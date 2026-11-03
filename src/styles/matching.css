@@ -1,0 +1,91 @@
+/* ---------- matching ---------- */
+.match-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--surface);
+  color: var(--ink-soft);
+  font-size: 12px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--line-strong);
+}
+
+.dot.is-on {
+  background: var(--green);
+  box-shadow: 0 0 0 3px var(--green-soft);
+}
+
+.tag-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.match-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.match-card {
+  display: grid;
+  gap: 7px;
+  padding: 15px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.match-card__head {
+  display: grid;
+  gap: 1px;
+}
+
+.match-card__head strong {
+  font-size: 15px;
+}
+
+.match-card__head small {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.match-card > p {
+  font-size: 12px;
+}
+
+.match-card__shared {
+  padding: 7px 9px;
+  border-radius: 8px;
+  background: var(--green-soft);
+  color: var(--green);
+  font-size: 11px;
+}
+
+.match-card__actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 3px;
+}
+
+@media (max-width: 1180px) {
+  .match-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .match-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -1,0 +1,37 @@
+/* ---------- settings ---------- */
+.settings-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  align-items: start;
+}
+
+.settings-section {
+  display: grid;
+  gap: 10px;
+}
+
+.settings-section__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.settings-section .toggle + .setting-row {
+  margin-top: 2px;
+}
+
+.settings-section .inline-actions {
+  margin-top: 3px;
+}
+
+.settings-section a {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+  .settings-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -1,0 +1,170 @@
+/* ---------- forum ---------- */
+.forum-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  gap: 14px;
+  align-items: start;
+}
+
+.forum-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 11px;
+}
+
+.post-list {
+  display: grid;
+  gap: 10px;
+}
+
+.post-card {
+  display: grid;
+  gap: 8px;
+  padding: 15px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.post-card__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.post-card__title {
+  color: var(--ink);
+}
+
+.post-card__title:hover {
+  text-decoration: none;
+}
+
+.post-card__title h3 {
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.post-card__body {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--ink-soft);
+  font-size: 12px;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.post-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+  padding-top: 7px;
+  border-top: 1px solid var(--line);
+}
+
+.forum-aside {
+  display: grid;
+  gap: 12px;
+}
+
+.forum-aside h2 {
+  margin-bottom: 7px;
+}
+
+.forum-aside p {
+  margin-bottom: 7px;
+  font-size: 12px;
+}
+
+.post-detail-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 240px;
+  gap: 14px;
+  align-items: start;
+}
+
+.post-detail {
+  display: grid;
+  gap: 14px;
+}
+
+.post-detail__author {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.post-detail__author > div {
+  display: grid;
+  gap: 1px;
+}
+
+.post-detail__author small {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.post-detail__body {
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+}
+
+.comments {
+  display: grid;
+  gap: 10px;
+  padding-top: 13px;
+  border-top: 1px solid var(--line);
+}
+
+.comment-list {
+  display: grid;
+  gap: 10px;
+}
+
+.comment-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+}
+
+.comment-row > div {
+  display: grid;
+  gap: 2px;
+}
+
+.comment-row strong {
+  font-size: 12px;
+}
+
+.comment-row p {
+  color: var(--ink-soft);
+  font-size: 12px;
+}
+
+.comment-form {
+  display: grid;
+  gap: 8px;
+  justify-items: start;
+  margin-top: 5px;
+}
+
+.comment-form .field {
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .forum-layout,
+  .post-detail-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .forum-aside {
+    grid-row: 2;
+  }
+}

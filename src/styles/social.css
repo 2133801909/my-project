@@ -1,0 +1,88 @@
+/* ---------- friends ---------- */
+.friend-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.friend-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.friend-card__main {
+  display: grid;
+  flex: 1;
+  gap: 2px;
+  min-width: 0;
+}
+
+.friend-card__main strong {
+  font-size: 14px;
+}
+
+.friend-card__main small,
+.friend-card__main p {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.friend-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.friend-card__actions {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+}
+
+.request-list,
+.invite-list {
+  display: grid;
+  gap: 4px;
+}
+
+.request-row,
+.invite-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 6px;
+  border-bottom: 1px solid var(--line);
+}
+
+.request-row:last-child,
+.invite-row:last-child {
+  border-bottom: 0;
+}
+
+.request-row > div,
+.invite-row__main {
+  display: grid;
+  gap: 1px;
+}
+
+.request-row strong,
+.invite-row strong {
+  font-size: 12px;
+}
+
+.request-row small,
+.invite-row small {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+@media (max-width: 900px) {
+  .friend-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

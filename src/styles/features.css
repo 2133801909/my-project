@@ -1,0 +1,519 @@
+/* ---------- dashboard ---------- */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  align-items: start;
+}
+
+.dashboard-card--wide {
+  grid-column: span 2;
+}
+
+.agenda {
+  display: grid;
+  gap: 8px;
+}
+
+.agenda__item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 11px 13px;
+  border-left: 3px solid var(--course, var(--brand));
+  border-radius: 9px;
+  background: var(--surface-2);
+}
+
+.agenda__time {
+  display: grid;
+  min-width: 48px;
+  color: var(--ink-soft);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.agenda__time small {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.agenda__item > div {
+  display: grid;
+  gap: 1px;
+}
+
+.agenda__item strong {
+  font-size: 13px;
+}
+
+.agenda__item small {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.mini-list {
+  display: grid;
+  gap: 3px;
+}
+
+.mini-list li > a,
+.mini-list li > div {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px;
+  border-radius: 8px;
+  color: inherit;
+}
+
+.mini-list li > a:hover {
+  background: var(--surface-2);
+  text-decoration: none;
+}
+
+.mini-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--brand);
+}
+
+.mini-dot.is-danger {
+  background: var(--danger);
+}
+
+.mini-list strong {
+  display: block;
+  font-size: 12px;
+}
+
+.mini-list small {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.event-mini {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  background: var(--surface-2);
+}
+
+.event-mini__date {
+  color: var(--brand-dark);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.dashboard-posts {
+  display: grid;
+  gap: 9px;
+}
+
+.dashboard-post {
+  display: grid;
+  gap: 5px;
+  padding: 12px 13px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: inherit;
+}
+
+.dashboard-post:hover {
+  border-color: var(--brand);
+  text-decoration: none;
+}
+
+.dashboard-post__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.dashboard-post__head strong {
+  font-size: 13px;
+}
+
+.dashboard-post small {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+/* ---------- schedule ---------- */
+.week-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(132px, 1fr));
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.week-day {
+  min-width: 132px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.week-day.is-today {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 2px var(--brand-soft);
+}
+
+.week-day__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 10px 10px 8px;
+  border-bottom: 1px solid var(--line);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.week-day__head small {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.week-day__body {
+  display: grid;
+  gap: 6px;
+  min-height: 190px;
+  align-content: start;
+  padding: 7px;
+}
+
+.week-day__empty {
+  padding: 12px 4px;
+  color: var(--muted);
+  font-size: 11px;
+  text-align: center;
+}
+
+.course-card {
+  display: grid;
+  gap: 2px;
+  width: 100%;
+  padding: 9px;
+  border: 0;
+  border-left: 3px solid var(--course, var(--brand));
+  border-radius: 8px;
+  background: var(--course-bg, var(--brand-soft));
+  color: var(--ink-soft);
+  text-align: left;
+}
+
+.course-card:hover {
+  filter: brightness(0.97);
+}
+
+.course-card strong {
+  color: var(--ink);
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.course-card span,
+.course-card small {
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.35;
+}
+
+.course-card small {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.course-card em {
+  color: var(--course, var(--brand));
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.course-card--blue {
+  --course: #2563eb;
+  --course-bg: #ecf3ff;
+}
+
+.course-card--green {
+  --course: #15806a;
+  --course-bg: #e8f7f2;
+}
+
+.course-card--orange {
+  --course: #b45309;
+  --course-bg: #fff4e6;
+}
+
+.course-card--plum {
+  --course: #7c3aed;
+  --course-bg: #f1eafe;
+}
+
+.day-view {
+  display: grid;
+  gap: 12px;
+}
+
+.day-view__tabs {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 5px;
+  padding: 5px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.day-view__tabs button {
+  display: grid;
+  gap: 1px;
+  padding: 8px 4px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.day-view__tabs button small {
+  font-size: 9px;
+  opacity: 0.8;
+}
+
+.day-view__tabs button.is-active {
+  background: var(--ink);
+  color: #fff;
+}
+
+.day-view__list {
+  display: grid;
+  gap: 8px;
+}
+
+.course-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 13px 15px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--course, var(--brand));
+  border-radius: 11px;
+  background: var(--surface);
+  color: var(--ink);
+  text-align: left;
+}
+
+.course-row:hover {
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow-sm);
+}
+
+.course-row__time {
+  display: grid;
+  min-width: 54px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.course-row__time small {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.course-row__main {
+  display: grid;
+  flex: 1;
+  gap: 2px;
+}
+
+.course-row__main small {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* ---------- tasks ---------- */
+.task-list {
+  display: grid;
+  gap: 2px;
+}
+
+.task-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 6px;
+  border-bottom: 1px solid var(--line);
+}
+
+.task-row:last-child {
+  border-bottom: 0;
+}
+
+.task-row.is-done {
+  opacity: 0.6;
+}
+
+.task-row.is-done .task-row__main strong {
+  text-decoration: line-through;
+}
+
+.check-button {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  flex: none;
+  padding: 0;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 50%;
+  background: var(--surface);
+  color: #fff;
+}
+
+.check-button[aria-pressed='true'] {
+  border-color: var(--green);
+  background: var(--green);
+}
+
+.task-row__main {
+  display: grid;
+  flex: 1;
+  gap: 1px;
+  color: inherit;
+}
+
+.task-row__main:hover {
+  text-decoration: none;
+}
+
+.task-row__main strong {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.task-row__main span {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.completed-block {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--line-strong);
+}
+
+.completed-block summary {
+  color: var(--muted);
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.event-list {
+  display: grid;
+  gap: 8px;
+}
+
+.event-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface-2);
+}
+
+.event-row__date {
+  color: var(--brand-dark);
+  font-size: 10px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.event-row__main {
+  display: grid;
+  flex: 1;
+  gap: 1px;
+}
+
+.event-row__main strong {
+  font-size: 12px;
+}
+
+.event-row__main small {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+@media (max-width: 1180px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dashboard-card--wide {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 900px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .two-column,
+  .two-column--wide {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 680px) {
+  .dashboard-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .dashboard-card--wide {
+    grid-column: span 1;
+  }
+
+  .week-grid {
+    grid-template-columns: repeat(7, 148px);
+  }
+
+  .day-view__tabs {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .form-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .task-row__main span {
+    font-size: 9px;
+  }
+
+  .event-row {
+    flex-wrap: wrap;
+  }
+}
