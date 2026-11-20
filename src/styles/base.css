@@ -712,11 +712,33 @@ svg {
 
 .notice-list {
   display: grid;
-  gap: 6px;
-  padding: 11px 14px;
-  border-radius: 10px;
+  gap: 8px;
+}
+
+.notice-list a {
+  display: grid;
+  gap: 3px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
   background: var(--surface-2);
-  font-size: 13px;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.notice-list a:hover {
+  border-color: var(--brand);
+}
+
+.notice-list__type {
+  color: var(--brand-dark);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.notice-list small {
+  color: var(--muted);
+  font-size: 12px;
 }
 
 .avatar {

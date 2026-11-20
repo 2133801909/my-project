@@ -112,7 +112,7 @@ export function EventDialog({ onClose }: { onClose: () => void }) {
         <TextAreaField label="备注" name="note" rows={3} placeholder="可选" />
         <label className="checkbox-row">
           <input type="checkbox" name="reminder" defaultChecked />
-          <span>开启本地提醒（仅按钮状态，不发送系统通知）</span>
+          <span>开启本地提醒（显示在应用内通知，不发送系统通知）</span>
         </label>
         {error ? (
           <p className="form-error" role="alert">

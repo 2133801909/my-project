@@ -116,7 +116,7 @@ export function SettingsPage() {
           <h2>提醒</h2>
           <ToggleRow
             label="应用内提醒"
-            description="仅展示页面内状态，不会在浏览器关闭后推送系统通知。"
+            description="控制本地通知栏的显示；不会发送系统通知。"
             checked={state.settings.reminders}
             onChange={() => dispatch({ type: 'settings/toggle-reminders' })}
           />

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { useApp } from '@/app/context';
 import { NAV_ITEMS, ROUTES } from '@/app/routes';
+import { formatDateTime } from '@/domain/dates';
 import { Avatar } from '@/components/ui/Avatar';
 import { Button } from '@/components/ui/Button';
 import { Dialog } from '@/components/ui/Dialog';
@@ -24,12 +25,15 @@ export function AppShell() {
   const [bannerVisible, setBannerVisible] = useState(true);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
 
-  const pendingRequests = state.requests.filter((request) => request.status === 'incoming').length;
+  const pendingRequests = state.requests.filter((request) => request.status === 'incoming');
   const pendingInvites = state.invites.filter(
     (invite) => invite.status === 'pending' && invite.direction === 'incoming',
-  ).length;
-  const openTasks = state.tasks.filter((task) => !task.done).length;
-  const notificationCount = pendingRequests + pendingInvites;
+  );
+  const openTasks = state.tasks.filter((task) => !task.done);
+  const reminderEvents = state.events.filter((event) => event.reminder);
+  const notificationCount = state.settings.reminders
+    ? pendingRequests.length + pendingInvites.length + openTasks.length + reminderEvents.length
+    : 0;
 
   const accountLabel =
     session?.mode === 'account' ? session.name : session?.mode === 'guest' ? '访客' : '未登录';
@@ -76,7 +80,7 @@ export function AppShell() {
             <button
               type="button"
               className="icon-button icon-button--badge"
-              aria-label={`应用内提醒，${notificationCount} 条待处理`}
+              aria-label={`应用内通知，${notificationCount} 条`}
               onClick={() => setNotificationsOpen(true)}
             >
               <Icon name="bell" />
@@ -139,25 +143,66 @@ export function AppShell() {
       </nav>
 
       {notificationsOpen ? (
-        <Dialog title="应用内提醒" onClose={() => setNotificationsOpen(false)}>
+        <Dialog title="应用内通知" onClose={() => setNotificationsOpen(false)}>
           <div className="stack">
-            <p>
-              {state.settings.reminders
-                ? '提醒功能已开启，但原型只在页面内展示状态，不会在浏览器关闭后推送通知。'
-                : '应用内提醒当前已关闭，可在设置页重新开启。'}
-            </p>
-            <ul className="notice-list">
-              <li>
-                <strong>{openTasks}</strong> 项待办未完成
-              </li>
-              <li>
-                <strong>{pendingRequests}</strong> 条好友申请待处理
-              </li>
-              <li>
-                <strong>{pendingInvites}</strong> 个邀约待回复
-              </li>
-            </ul>
-            <Button onClick={() => setNotificationsOpen(false)}>知道了</Button>
+            <p className="muted">本地演示通知来自当前浏览器的数据，不会发送系统通知。</p>
+            {!state.settings.reminders ? (
+              <p>
+                应用内提醒已关闭。
+                <NavLink to={ROUTES.settings} onClick={() => setNotificationsOpen(false)}>
+                  前往设置开启
+                </NavLink>
+              </p>
+            ) : notificationCount === 0 ? (
+              <p className="muted">暂无通知。</p>
+            ) : (
+              <ul className="notice-list" aria-label="通知列表">
+                {pendingRequests.map((request) => (
+                  <li key={`request-${request.id}`}>
+                    <NavLink to={ROUTES.friends} onClick={() => setNotificationsOpen(false)}>
+                      <span className="notice-list__type">好友申请</span>
+                      <strong>
+                        {state.users.find((user) => user.id === request.userId)?.name ?? '同学'}
+                        申请添加你为好友
+                      </strong>
+                      <small>前往好友页处理</small>
+                    </NavLink>
+                  </li>
+                ))}
+                {pendingInvites.map((invite) => (
+                  <li key={`invite-${invite.id}`}>
+                    <NavLink to={ROUTES.friends} onClick={() => setNotificationsOpen(false)}>
+                      <span className="notice-list__type">收到邀约</span>
+                      <strong>{invite.title}</strong>
+                      <small>
+                        {state.users.find((user) => user.id === invite.userId)?.name ?? '同学'} ·{' '}
+                        {invite.time} · {invite.place || '地点待定'}
+                      </small>
+                    </NavLink>
+                  </li>
+                ))}
+                {openTasks.map((task) => (
+                  <li key={`task-${task.id}`}>
+                    <NavLink to={ROUTES.task(task.id)} onClick={() => setNotificationsOpen(false)}>
+                      <span className="notice-list__type">待办</span>
+                      <strong>{task.title}</strong>
+                      <small>截止：{formatDateTime(task.due)}</small>
+                    </NavLink>
+                  </li>
+                ))}
+                {reminderEvents.map((event) => (
+                  <li key={`event-${event.id}`}>
+                    <NavLink to={ROUTES.tasks} onClick={() => setNotificationsOpen(false)}>
+                      <span className="notice-list__type">安排（提醒已开启）</span>
+                      <strong>{event.title}</strong>
+                      <small>
+                        {formatDateTime(event.date)} · {event.place || '地点待定'}
+                      </small>
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </Dialog>
       ) : null}

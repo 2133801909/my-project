@@ -30,6 +30,8 @@ npm run check         # typecheck + lint + test + build
 | `tests/component/tasks.test.tsx`    | 完成状态、添加待办、提醒开关。                           |
 | `tests/component/chat.test.tsx`     | 发送文本并清空输入。                                     |
 
+`tests/component/notifications.test.tsx` 覆盖本地通知明细、跳转、状态更新和关闭提醒。
+
 ## `renderWithProviders`
 
 ```ts
