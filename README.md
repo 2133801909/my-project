@@ -33,6 +33,13 @@ npm run preview
 
 > 录音功能需要 HTTPS 或 `localhost`。直接以 `file://` 打开构建产物不保证可用；请使用预览服务器或静态托管。
 
+### GitHub Pages 部署
+
+仓库管理员在 **Settings → Pages → Build and deployment** 中选择 **GitHub Actions**。
+合并到 `main` 后，`.github/workflows/pages.yml` 自动构建并发布；也可从 Actions 手动运行。
+启用后演示地址为 <https://2133801909.github.io/my-project/>。
+演示数据仍只保存在访问者自己的浏览器中，不会同步。
+
 ## 脚本
 
 | 命令                | 作用                |
