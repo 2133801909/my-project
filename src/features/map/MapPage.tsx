@@ -3,27 +3,35 @@ import { useApp } from '@/app/context';
 import type { Campus } from '@/domain/types';
 import { Button } from '@/components/ui/Button';
 import { Dialog } from '@/components/ui/Dialog';
-import { Icon } from '@/components/ui/Icon';
 import { PageHeader } from '@/components/ui/PageHeader';
+import xiasha from '@/assets/maps/xiasha.svg';
+import wenyi from '@/assets/maps/wenyi.svg';
+import dongyue from '@/assets/maps/dongyue.svg';
+import shaoxing from '@/assets/maps/shaoxing.svg';
+import qingshanhu from '@/assets/maps/qingshanhu.svg';
 
 const CAMPUSES: Campus[] = ['下沙校区', '文一校区', '东岳校区', '绍兴校区', '青山湖校区'];
 
+const MAPS: Record<Campus, string> = {
+  下沙校区: xiasha,
+  文一校区: wenyi,
+  东岳校区: dongyue,
+  绍兴校区: shaoxing,
+  青山湖校区: qingshanhu,
+};
+
 export function MapPage() {
   const { state, dispatch } = useApp();
-  const [dialog, setDialog] = useState<'info' | 'search' | null>(null);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   return (
     <div className="page">
       <PageHeader
         eyebrow="校园空间"
         title="校园地图"
-        description="校区名称参考学校官网；建筑坐标、室内信息与导航尚未接入，页面明确标注为占位地图。"
+        description="基于 OpenStreetMap 的离线地图，仅供参考；数据可能不完整或过时，不提供地点搜索和导航。"
         actions={
-          <Button
-            variant="secondary"
-            icon={<Icon name="search" size={16} />}
-            onClick={() => setDialog('search')}
-          >
+          <Button variant="secondary" onClick={() => setSearchOpen(true)}>
             地点搜索
           </Button>
         }
@@ -47,67 +55,24 @@ export function MapPage() {
             ))}
           </select>
         </label>
-        <span className="pill pill--warn">地图数据未接入</span>
+        <span className="pill">离线地图 · 仅供参考</span>
       </div>
 
-      <section className="map-placeholder" aria-label="校园地图占位">
-        <div className="map-grid" aria-hidden="true">
-          {Array.from({ length: 12 }, (_, index) => (
-            <span key={index} />
-          ))}
-        </div>
-        <div className="map-placeholder__content">
-          <Icon name="map" size={30} />
-          <h2>{state.mapCampus} · 占位地图</h2>
-          <p>
-            当前没有接入杭州电子科技大学的地图服务或校方地点数据，因此不展示假造的建筑坐标、校内路线或导航结果。
-          </p>
-          <Button variant="secondary" onClick={() => setDialog('info')}>
-            了解接入说明
-          </Button>
-        </div>
-      </section>
+      <figure className="campus-map">
+        <a href={MAPS[state.mapCampus]} target="_blank" rel="noreferrer">
+          <img src={MAPS[state.mapCampus]} alt={`${state.mapCampus}的 OpenStreetMap 离线地图`} />
+        </a>
+        <figcaption>
+          地图数据 © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap 贡献者</a>，
+          遵循 ODbL 许可。点击地图可查看原图。地图并非校方提供，内容可能不完整或过时。
+        </figcaption>
+      </figure>
 
-      <div className="map-cards">
-        <article className="panel">
-          <h2>已支持的校区名称</h2>
-          <ul className="plain-list">
-            {CAMPUSES.map((campus) => (
-              <li key={campus}>
-                <Icon name="check" size={15} /> {campus}
-              </li>
-            ))}
-          </ul>
-        </article>
-        <article className="panel">
-          <h2>正式接入前需要</h2>
-          <ul className="plain-list">
-            <li>校方可公开的地图数据与地点目录</li>
-            <li>地图服务使用许可与密钥管理</li>
-            <li>无障碍路线与隐私影响评估</li>
-          </ul>
-        </article>
-      </div>
-
-      {dialog === 'info' ? (
-        <Dialog title="地图接入说明" onClose={() => setDialog(null)}>
+      {searchOpen ? (
+        <Dialog title="地点搜索" onClose={() => setSearchOpen(false)}>
           <div className="stack">
-            <p>
-              当前没有接入杭州电子科技大学的地图服务或校方地点数据，因此不展示假造的建筑坐标、校内路线或导航结果。
-            </p>
-            <p>
-              正式接入需确认校方可公开的地图数据、地点目录和地图服务使用许可，并安全配置地图服务密钥。
-            </p>
-            <Button onClick={() => setDialog(null)}>知道了</Button>
-          </div>
-        </Dialog>
-      ) : null}
-
-      {dialog === 'search' ? (
-        <Dialog title="地点搜索" onClose={() => setDialog(null)}>
-          <div className="stack">
-            <p>地图数据尚未接入，目前不能搜索真实教学楼、食堂或图书馆位置。</p>
-            <Button onClick={() => setDialog(null)}>知道了</Button>
+            <p>当前为静态离线地图，地点搜索、室内信息和路线导航尚未接入。</p>
+            <Button onClick={() => setSearchOpen(false)}>知道了</Button>
           </div>
         </Dialog>
       ) : null}

@@ -26,14 +26,15 @@
 
 ## 决策记录（ADR）
 
-| 编号                                                     | 决策                      |
-| -------------------------------------------------------- | ------------------------- |
-| [`0001`](decisions/0001-react-typescript-vite.md)        | React + TypeScript + Vite |
-| [`0002`](decisions/0002-hash-routing.md)                 | Hash 路由与静态托管       |
-| [`0003`](decisions/0003-local-first-persistence.md)      | 本地优先持久化与迁移      |
-| [`0004`](decisions/0004-pure-domain-injectable-store.md) | 纯领域函数 + 可注入仓库   |
-| [`0005`](decisions/0005-demo-auth-boundary.md)           | 演示账号边界              |
-| [`0006`](decisions/0006-testing-strategy.md)             | 单元 + 组件测试策略       |
+| 编号                                                     | 决策                           |
+| -------------------------------------------------------- | ------------------------------ |
+| [`0001`](decisions/0001-react-typescript-vite.md)        | React + TypeScript + Vite      |
+| [`0002`](decisions/0002-hash-routing.md)                 | Hash 路由与静态托管            |
+| [`0003`](decisions/0003-local-first-persistence.md)      | 本地优先持久化与迁移           |
+| [`0004`](decisions/0004-pure-domain-injectable-store.md) | 纯领域函数 + 可注入仓库        |
+| [`0005`](decisions/0005-demo-auth-boundary.md)           | 演示账号边界                   |
+| [`0006`](decisions/0006-testing-strategy.md)             | 单元 + 组件测试策略            |
+| [`0007`](decisions/0007-offline-campus-maps.md)          | OpenStreetMap 静态离线校园地图 |
 
 ## 维护规则
 

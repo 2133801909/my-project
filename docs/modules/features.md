@@ -11,8 +11,10 @@
 | `friends/`   | `FriendsPage.tsx`, `FriendDialogs.tsx`, `ChatPage.tsx`                        | 申请、好友、邀约、拉黑、聊天与媒体。          | chat domain, media service             |
 | `matching/`  | `MatchingPage.tsx`                                                            | 开启匹配、同系/兴趣筛选、加好友/邀约。        | `eligibleMatches`                      |
 | `forum/`     | `ForumPage.tsx`, `PostCard.tsx`, `PostDetailPage.tsx`, `CreatePostDialog.tsx` | 筛选、发布、点赞、评论、撤回、作者加好友。    | forum domain                           |
-| `map/`       | `MapPage.tsx`                                                                 | 校区选择、占位地图、接入说明。                | 无                                     |
+| `map/`       | `MapPage.tsx`                                                                 | 校区选择、离线地图、来源说明。                | 本地 OpenStreetMap 地图资源            |
 | `settings/`  | `SettingsPage.tsx`, `SettingsDialogs.tsx`                                     | 资料/兴趣编辑、隐私、提醒、导出、重置、退出。 | storage via provider                   |
+
+首页的 `NebulaBackground.tsx` 绘制装饰性粒子背景，不参与业务状态。
 
 ## 页面契约
 
@@ -63,8 +65,8 @@
 
 ### MapPage
 
-- 五个校区名称可切换；不得生成建筑坐标或路线。
-- “地图数据未接入”必须始终可见；搜索只显示说明对话框。
+- 五个校区名称可切换，对应展示本地 OpenStreetMap 静态地图并标注数据来源与许可。
+- 数据可能不完整或过时；搜索、室内信息和路线导航未接入。
 
 ### SettingsPage
 

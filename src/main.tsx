@@ -4,6 +4,7 @@ import { HashRouter } from 'react-router-dom';
 import { App } from './App';
 import { AppProvider } from './app/AppProvider';
 import { ToastProvider } from './components/ui/toast/ToastProvider';
+import { ClickEffects } from './components/ui/ClickEffects';
 import './styles/tokens.css';
 import './styles/base.css';
 import './styles/layout.css';
@@ -21,6 +22,7 @@ if (!rootElement) throw new Error('Missing #root element');
 
 createRoot(rootElement).render(
   <StrictMode>
+    <ClickEffects />
     <ToastProvider>
       <AppProvider>
         <HashRouter>

@@ -13,7 +13,7 @@
 | `chat.css`       | 聊天布局、消息气泡、表情选择、录音工具条。                                  |
 | `matching.css`   | 匹配状态、卡片网格。                                                        |
 | `forum.css`      | 论坛列表、帖子卡、详情、评论。                                              |
-| `map.css`        | 校区工具栏、占位地图。                                                      |
+| `map.css`        | 校区工具栏、离线地图与来源说明。                                            |
 | `settings.css`   | 设置页网格。                                                                |
 
 `src/main.tsx` 按上述顺序 import；功能样式依赖 `base.css` 的令牌与通用类。
@@ -38,7 +38,7 @@
 
 - 保留 `:focus-visible` 轮廓，不移除。
 - 交互元素最小高度约 32–40px；移动端点击区域不小于 32px。
-- `prefers-reduced-motion` 下缩短动画（如后续添加，必须遵守）。
+- 首页 Canvas 粒子星云会被鼠标柔和拉扯；`prefers-reduced-motion` 下保持静态，页面不可见时暂停动画。
 - 图片缩放只改变 `transform`，不改变布局尺寸。
 
 ## 修改规则
