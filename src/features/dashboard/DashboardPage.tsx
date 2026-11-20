@@ -8,6 +8,7 @@ import { Avatar } from '@/components/ui/Avatar';
 import { Button } from '@/components/ui/Button';
 import { Icon } from '@/components/ui/Icon';
 import { EmptyState, PageHeader, Stat, Tag } from '@/components/ui/PageHeader';
+import { NebulaBackground } from '@/features/dashboard/NebulaBackground';
 
 export function DashboardPage() {
   const { state, dispatch } = useApp();
@@ -28,7 +29,8 @@ export function DashboardPage() {
   const latestPosts = state.posts.slice(0, 3);
 
   return (
-    <div className="page">
+    <div className="page dashboard-page">
+      <NebulaBackground />
       <PageHeader
         eyebrow={formatToday()}
         title={`你好，${state.profile.name}`}

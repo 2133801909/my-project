@@ -76,9 +76,15 @@
 - `useToast()`：`show(message, tone?: 'info'|'success'|'error')`。
 - 独立 context 文件避免 React Fast Refresh 的“组件/非组件混合导出”问题。
 
+## `ui/ClickEffects.tsx`
+
+- 在组合根挂载一次，监听全站鼠标点击，在点击位置显示短暂光环和粒子。
+- 装饰层不接收指针事件、不参与无障碍树；减少动态效果时不显示。
+- 点击坐标使用动态内联定位；不改变原有点击行为。
+
 ## 约定
 
 - 不在通用组件里 import `useApp` 或业务 domain 函数。
 - 所有交互元素必须有可访问名称；纯图标按钮使用 `aria-label`。
-- 颜色/间距只使用 `src/styles/tokens.css` 的变量或既有 class，不写行内样式（图片缩放变换除外）。
+- 颜色/间距只使用 `src/styles/tokens.css` 的变量或既有 class；仅动态定位和图片缩放可用行内样式。
 - 新增通用组件前先检查 `features/` 是否已有局部实现；出现第二个调用点再提升。

@@ -14,6 +14,8 @@
 | `map/`       | `MapPage.tsx`                                                                 | 校区选择、离线地图、来源说明。                | 本地 OpenStreetMap 地图资源            |
 | `settings/`  | `SettingsPage.tsx`, `SettingsDialogs.tsx`                                     | 资料/兴趣编辑、隐私、提醒、导出、重置、退出。 | storage via provider                   |
 
+首页的 `NebulaBackground.tsx` 绘制装饰性粒子背景，不参与业务状态。
+
 ## 页面契约
 
 ### AuthPage

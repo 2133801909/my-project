@@ -44,6 +44,7 @@ flowchart TD
 
 ```tsx
 <StrictMode>
+  <ClickEffects />
   <ToastProvider>
     <AppProvider>
       <HashRouter>
