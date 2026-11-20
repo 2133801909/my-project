@@ -13,7 +13,7 @@
 | `chat.css`       | 聊天布局、消息气泡、表情选择、录音工具条。                                  |
 | `matching.css`   | 匹配状态、卡片网格。                                                        |
 | `forum.css`      | 论坛列表、帖子卡、详情、评论。                                              |
-| `map.css`        | 校区工具栏、占位地图。                                                      |
+| `map.css`        | 校区工具栏、离线地图与来源说明。                                            |
 | `settings.css`   | 设置页网格。                                                                |
 
 `src/main.tsx` 按上述顺序 import；功能样式依赖 `base.css` 的令牌与通用类。

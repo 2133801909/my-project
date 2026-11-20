@@ -16,7 +16,7 @@
 | `/matching`               | `MatchingPage`   | 同系匹配与兴趣筛选。                       |
 | `/forum`                  | `ForumPage`      | 论坛列表与发布。                           |
 | `/forum/:postId`          | `PostDetailPage` | 帖子详情、评论、点赞、撤回。               |
-| `/map`                    | `MapPage`        | 校区选择与占位地图。                       |
+| `/map`                    | `MapPage`        | 校区选择与静态离线地图。                   |
 | `/settings`               | `SettingsPage`   | 资料、隐私、提醒、数据导出/重置。          |
 
 ## 路由结构
