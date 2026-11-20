@@ -26,7 +26,7 @@ npm run check         # typecheck + lint + test + build
 | `tests/unit/storage.test.ts`        | 持久化、账号隔离、迁移、配额失败、会话迁移。             |
 | `tests/component/auth.test.tsx`     | 无密码字段、昵称校验、找不到账号、访客入口。             |
 | `tests/component/app.test.tsx`      | 路由渲染、导航、注册进入、未登录重定向。                 |
-| `tests/component/schedule.test.tsx` | 添加课程回归、时间校验、日视图/单双周切换。              |
+| `tests/component/schedule.test.tsx` | 添加课程回归、时间校验、日视图与单双周课程筛选。         |
 | `tests/component/tasks.test.tsx`    | 完成状态、添加待办、提醒开关。                           |
 | `tests/component/chat.test.tsx`     | 发送文本并清空输入。                                     |
 
@@ -47,7 +47,7 @@ renderWithProviders(<SchedulePage />, {
 
 - 组件测试必须包在 Provider 中；不要 mock `useApp`。
 - 需要路由参数时使用 `path + entries`（如 `/friends/:friendId/chat`）。
-- 固定时钟 `FIXED_NOW = 2026-11-03T09:00:00`，避免日期相关断言漂移。
+- `FIXED_NOW = 2026-11-03T09:00:00` 用于种子与仓库；首页、课表测试额外冻结系统 `Date` 并在测试后恢复。
 - 存储使用 `createMemoryStorage()`；不要污染真实 `localStorage`。
 
 ## 覆盖策略
@@ -76,6 +76,6 @@ renderWithProviders(<SchedulePage />, {
 
 ## 已知限制
 
-- jsdom 不支持真实 canvas/媒体流；图片压缩与录音只做限制测试 + 浏览器冒烟。
+- jsdom 不支持真实 canvas/媒体流；首页组件测试将 Canvas 上下文设为不可用，星云、图片压缩与录音通过浏览器冒烟验证。
 - 无覆盖率阈值；新增关键路径应附带行为测试。
 - 浏览器验证清单：登录/注册/访客、课表 CRUD、待办完成、聊天发送、论坛发帖/评论、设置导出、移动端布局。

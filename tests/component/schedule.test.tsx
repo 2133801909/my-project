@@ -1,10 +1,20 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { SchedulePage } from '@/features/schedule/SchedulePage';
-import { renderWithProviders } from '../render';
+import { createSeed } from '@/state/seed';
+import { FIXED_NOW, renderWithProviders } from '../render';
 
 describe('SchedulePage', () => {
+  beforeEach(() => {
+    vi.useFakeTimers({ toFake: ['Date'] });
+    vi.setSystemTime(FIXED_NOW);
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
   it('adds a course through the dialog (regression: the old app called an undefined handler)', async () => {
     const user = userEvent.setup();
     renderWithProviders(<SchedulePage />);
@@ -41,12 +51,21 @@ describe('SchedulePage', () => {
 
   it('switches to day view and filters by teaching week', async () => {
     const user = userEvent.setup();
-    renderWithProviders(<SchedulePage />);
+    const state = createSeed(FIXED_NOW);
+    state.courses = [state.courses[1], { ...state.courses[4], day: 1 }];
+    renderWithProviders(<SchedulePage />, { initialState: state });
 
     await user.click(screen.getByRole('button', { name: '日视图' }));
-    expect(screen.getByRole('tablist', { name: '选择日期' })).toBeInTheDocument();
+    await user.click(screen.getByRole('tab', { name: /周一/ }));
 
     await user.click(screen.getByRole('button', { name: '单周' }));
-    expect(screen.getByText(/第 9 教学周|第 7 教学周/)).toBeInTheDocument();
+    expect(screen.getByText(/第 9 教学周/)).toBeInTheDocument();
+    expect(screen.getByText('大学英语（提升）')).toBeInTheDocument();
+    expect(screen.queryByText('形势与政策')).not.toBeInTheDocument();
+
+    await user.click(screen.getByRole('button', { name: '双周' }));
+    expect(screen.getByText(/第 10 教学周/)).toBeInTheDocument();
+    expect(screen.getByText('形势与政策')).toBeInTheDocument();
+    expect(screen.queryByText('大学英语（提升）')).not.toBeInTheDocument();
   });
 });
