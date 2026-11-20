@@ -1,10 +1,20 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { App } from '@/App';
-import { renderWithProviders } from '../render';
+import { FIXED_NOW, renderWithProviders } from '../render';
 
 describe('application shell', () => {
+  beforeEach(() => {
+    vi.useFakeTimers({ toFake: ['Date'] });
+    vi.setSystemTime(FIXED_NOW);
+    vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue(null);
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
   it('renders the dashboard for a guest session', () => {
     renderWithProviders(<App />, { entries: ['/'] });
 
